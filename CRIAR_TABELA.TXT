@@ -1,0 +1,10 @@
+Utilize para criar a tabela do cliente dentro da base asterisk
+
+CREATE TABLE `callback_CLIENTE` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `data` datetime DEFAULT NULL,
+  `callid` varchar(32) DEFAULT NULL,
+  `telefone` varchar(15) DEFAULT NULL,
+  `opcao_digitada` int(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+)

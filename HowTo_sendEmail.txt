@@ -1,0 +1,26 @@
+# Ivan de Almeida Cornedi
+#
+# ----- INSTALANDO SENDEMAIL ----------------------------
+# Qualquer dificuldade siga o tutorial no link abaixo
+# Link do tutorial http://blog.ahughes.org/?p=751
+# Arquivo sendEmail-v1.56.tar.gz adicionado ao diretorio.
+
+#Copiar arquivo sendEmail para /usr/local/bin
+cp sendEmail /usr/local/bin
+
+#De permissão de execução
+chmod +x /usr/local/bin/sendEmail
+
+#Execute o comando 
+sendEmail
+
+#
+# Se o comando funcionar quer dizer que está OK e que pode fazer um teste de
+#envio de e-mail. Aqui utiliso para envio INTERNO, logo não sai para a
+#internet (é necessario pedir liberação para o time de servidores caso o
+#servidor não esteja liberado para envio).
+#
+#
+sendEmail -f callback@seudominio.com.br -s IP:PORTA -t email@email.com -u "ASSUNTO DO E-MAIL" -m "Mensagem de teste"
+
+# Se tudo der certo, aproveite o seu café! =]
