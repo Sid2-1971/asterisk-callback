@@ -29,11 +29,10 @@ switch ($OPCAO_DIGITADA){
 	 * Cliente deseja que retorne o contato assim que possivel
 	 * Gera log no /var/log/callback.log
 	 * Envia e-mail para o(s) destinario(s) setado(s) na variavel $EMAIL
-	 * Faz insert na tabela callback_multiplus
 	 */
 	case 1:
   	    shell_exec('echo "[$(date +"%Y-%m-%d %H:%M:%S")] CALLID ' . $UNIQUEID . ' TELEFONE ' . $TELEFONE . ' OPÇÃO DIGITADA ' . $OPCAO_DIGITADA . ' [RETORNAR CONTATO]" >> /var/log/callback.log');
-	    shell_exec('sendEmail -f callback@latam.stefanini.com -s 10.161.69.235:25 -t ' . $EMAILS  . ' -u "[RETORNAR] - Retornar contato" -m "Cliente com telefone ' . $TELEFONE . ' solicita retorno do contato."');
+	    shell_exec('sendEmail -f email@destino.com.br -s ENDERECO_IP -t ' . $EMAILS  . ' -u "[RETORNAR] - Retornar contato" -m "Cliente com telefone ' . $TELEFONE . ' solicita retorno do contato."');
 
 	     $INSERT_RETORNAR_CONTATO = "INSERT INTO asterisk.callback_$CLIENTE (data, callid, telefone, opcao_digitada) VALUES (now(),'$UNIQUEID','$TELEFONE','$OPCAO_DIGITADA');";
 	     $resultado = mysql_query($INSERT_RETORNAR_CONTATO);
@@ -41,7 +40,6 @@ switch ($OPCAO_DIGITADA){
 
 	/* Cliente irá aguardar atendimento na fila de espera
 	 * Gera log no /var/log/callback.log
-	 * Faz insert na tabela callback_multiplus
 	 */
 	case 2:
  	    shell_exec('echo "[$(date +"%Y-%m-%d %H:%M:%S")] CALLID ' . $UNIQUEID . ' OPÇÃO DIGITADA ' . $OPCAO_DIGITADA . ' [AGUARDAR NA FILA]" >> /var/log/callback.log');
@@ -51,7 +49,6 @@ switch ($OPCAO_DIGITADA){
 
         /* Cliente irá retornar mais tarde
          * Gera log no /var/log/callback.log
-         * Faz insert na tabela callback_multiplus
          */
 	case 3:
 	    shell_exec('echo "[$(date +"%Y-%m-%d %H:%M:%S")] CALLID ' . $UNIQUEID . ' OPÇÃO DIGIRTADA ' . $OPCAO_DIGITADA . ' [RETORNARÁ MAIS TARDE]" >> /var/log/callback.log');
